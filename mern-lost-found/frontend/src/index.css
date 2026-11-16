@@ -1,0 +1,111 @@
+:root {
+  --navy: #08244b;
+  --blue: #155eef;
+  --ink: #10213b;
+  --muted: #64748b;
+  --line: #e5eaf2;
+  --bg: #f5f8fc;
+  --green: #16834b;
+  --red: #d83b45;
+  --card: #ffffff;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+a { color: var(--blue); text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-weight: 700;
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 12px #155eef22;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.92; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn.secondary {
+  background: #fff;
+  color: var(--navy);
+  border: 1px solid #cbd6e5;
+  box-shadow: none;
+}
+.btn.full { width: 100%; }
+.btn.green { background: var(--green); }
+.btn.red { background: var(--red); }
+
+.field {
+  width: 100%;
+  border: 1px solid #dbe3ee;
+  border-radius: 9px;
+  padding: 11px 13px;
+  background: #fff;
+  outline: none;
+}
+.field:focus {
+  border-color: #7ba8ff;
+  box-shadow: 0 0 0 3px #155eef12;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #eaf8f0;
+  color: var(--green);
+  text-transform: capitalize;
+}
+.tag.lost { background: #fff0ef; color: var(--red); }
+.tag.pend { background: #fef9c3; color: #a16207; }
+.tag.mut { background: #f1f5f9; color: #64748b; }
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 6px 20px #0b244008;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #102b4e;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  z-index: 50;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.muted { color: var(--muted); font-size: 13px; }
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
