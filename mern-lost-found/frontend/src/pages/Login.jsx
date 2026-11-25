@@ -10,6 +10,7 @@ export default function Login() {
   const [form, setForm] = useState({ name: '', email: '', usn: '', password: '' });
   const [toast, setToast] = useState('');
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   if (user) {
     navigate('/');
@@ -78,18 +79,27 @@ export default function Login() {
             className="field"
             type="email"
             required
-            placeholder="name@sjbit.edu"
             value={form.email}
             onChange={(e) => set('email', e.target.value)}
           />
           <label className="lbl">Password</label>
-          <input
-            className="field"
-            type="password"
-            required
-            value={form.password}
-            onChange={(e) => set('password', e.target.value)}
-          />
+          <div className="password-wrap">
+            <input
+              className="field"
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={form.password}
+              onChange={(e) => set('password', e.target.value)}
+            />
+            <button
+              type="button"
+              className="toggle-pw"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
           <button className="btn full" style={{ marginTop: 14 }} disabled={busy}>
             {busy ? 'Please wait…' : mode === 'in' ? 'Sign in' : 'Register'}
           </button>
@@ -119,6 +129,22 @@ export default function Login() {
         .tabs button { border:0; background:transparent; padding:8px 14px; border-radius:8px; font-weight:650; color:var(--muted); }
         .tabs button.on { background:#edf4ff; color:var(--blue); }
         .lbl { display:block; font-size:12px; font-weight:700; color:#41516b; margin:12px 0 6px; }
+        .password-wrap { position: relative; }
+        .password-wrap .field { padding-right: 64px; }
+        .toggle-pw {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          border: 0;
+          background: transparent;
+          color: var(--blue);
+          font-size: 12px;
+          font-weight: 700;
+          cursor: pointer;
+          padding: 4px 6px;
+        }
+        .toggle-pw:hover { opacity: 0.8; }
       `}</style>
     </div>
   );
