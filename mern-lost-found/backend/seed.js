@@ -10,7 +10,9 @@ const Claim = require('./models/Claim');
 const Notification = require('./models/Notification');
 
 const seed = async () => {
-  await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 15000,
+  });
   console.log('Connected. Clearing old data...');
   await Promise.all([
     User.deleteMany({}),
