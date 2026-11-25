@@ -90,7 +90,7 @@ export default function Layout() {
             <br />
             <small>Department of Computer Science &amp; Engineering · Bengaluru</small>
           </div>
-          <small>Lost &amp; Found Campus Portal · MERN prototype</small>
+          <small>Lost &amp; Found Campus Portal</small>
         </div>
       </footer>
       <style>{`
