@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Toast from '../components/Toast';
 
@@ -17,10 +17,6 @@ export default function Login() {
   }
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-
-  const fill = (email) => {
-    setForm((f) => ({ ...f, email, password: 'Test@1234' }));
-  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -48,7 +44,9 @@ export default function Login() {
     <div className="wrap" style={{ maxWidth: 420 }}>
       <div className="panel">
         <div className="brand-row">
-          <div className="crest">SJ</div>
+          <div className="crest">
+            <img src="/sjbitbengaluru_logo.jpeg" alt="SJBIT" />
+          </div>
           <div>
             <strong>SJB Institute of Technology</strong>
             <div className="muted">CSE · Lost &amp; Found</div>
@@ -96,33 +94,31 @@ export default function Login() {
             {busy ? 'Please wait…' : mode === 'in' ? 'Sign in' : 'Register'}
           </button>
         </form>
-        {mode === 'in' && (
-          <div style={{ marginTop: 18 }}>
-            <p className="muted">Demo (password <code>Test@1234</code>)</p>
-            <div className="demo">
-              <button type="button" className="btn secondary" onClick={() => fill('ravi@sjbit.edu')}>
-                Student: Ravi
-              </button>
-              <button type="button" className="btn secondary" onClick={() => fill('priya@sjbit.edu')}>
-                Student: Priya
-              </button>
-              <button type="button" className="btn secondary" onClick={() => fill('admin@sjbit.edu')}>
-                Admin
-              </button>
-            </div>
-          </div>
-        )}
       </div>
       <Toast message={toast} onClose={() => setToast('')} />
       <style>{`
         .brand-row { display:flex; gap:12px; align-items:center; padding-bottom:14px; border-bottom:1px solid var(--line); }
-        .crest { width:44px; height:44px; border-radius:12px; background:linear-gradient(145deg,#edf4ff,#dbeafe); display:grid; place-items:center; font-weight:900; color:var(--navy); }
+        .crest {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          background: #fff;
+          display: grid;
+          place-items: center;
+          border: 1px solid #d8e5fa;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .crest img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
         .tabs { display:flex; gap:6px; margin:14px 0 10px; }
         .tabs button { border:0; background:transparent; padding:8px 14px; border-radius:8px; font-weight:650; color:var(--muted); }
         .tabs button.on { background:#edf4ff; color:var(--blue); }
         .lbl { display:block; font-size:12px; font-weight:700; color:#41516b; margin:12px 0 6px; }
-        .demo { display:flex; flex-wrap:wrap; gap:8px; }
-        code { background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:12px; }
       `}</style>
     </div>
   );
